@@ -20,15 +20,6 @@ const OfferItem = ({ offer }) => {
     } else return invoiceStore.addItemToInvoice(newItem);
   };
 
-  const handleRemove = () => {
-    const foundItem = invoiceStore.items.find(
-      (item) => item.offerId === newItem.offerId
-    );
-    if (foundItem) {
-      return invoiceStore.removeItemFromInvoice(`o${foundItem.offerId}`);
-    } else return null;
-  };
-
   const foundItem = invoiceStore.items.find(
     (item) => item.offerId === offer.id
   );

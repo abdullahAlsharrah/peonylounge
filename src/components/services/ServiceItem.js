@@ -4,11 +4,9 @@ import invoiceStore from "../../stores/invoiceStore";
 import { ServiceItemName } from "../../styles";
 
 const ServiceItem = ({ service, handleopen }) => {
-  const [quantity, setQuantity] = React.useState(1);
   const newItem = {
-    quantity: quantity,
     serviceId: service.id,
-    price: quantity * service.price,
+    price: service.price,
     name: service.name,
   };
   const handleAdd = () => {
@@ -21,21 +19,10 @@ const ServiceItem = ({ service, handleopen }) => {
   };
   // console.log("hello");
 
-  const handleRemove = () => {
-    const foundItem = invoiceStore.items.find(
-      (item) => item.serviceId === newItem.serviceId
-    );
-    if (foundItem) {
-      return invoiceStore.removeItemFromInvoice(`s${foundItem.serviceId}`);
-    } else return null;
-  };
   const foundItem = invoiceStore.items.find(
     (item) => item.serviceId === service.id
   );
 
-  const handlePackage = () => {
-    handleopen(service.id, service.price);
-  };
   return (
     <div
 

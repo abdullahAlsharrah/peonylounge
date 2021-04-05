@@ -15,10 +15,6 @@ const RecieptList = () => {
     invoiceStore.checkout();
     setPhoneNumber();
   };
-  const handleCancel = () => {
-    invoiceStore.cancelCheckout();
-    setPhoneNumber();
-  };
 
   const list =
     //  route
