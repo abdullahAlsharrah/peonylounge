@@ -5,15 +5,18 @@ import { observer } from "mobx-react";
 import invoiceStore from "../../stores/invoiceStore";
 import {
   FlexContainer,
+  OfferTitle,
   ReceiptContainer,
   RecieptPriceTitle,
   RecieptServiceTitle,
 } from "../../styles";
 const RecieptList = () => {
+  const [cash, setCash] = React.useState();
   const handleCheckout = () => {
     invoiceStore.setPhoneNumber(phoneNumber);
     invoiceStore.checkout();
     setPhoneNumber();
+    setCash();
   };
 
   const list =
@@ -86,6 +89,17 @@ const RecieptList = () => {
             />
           </>
         )} */}
+      <FlexContainer>
+        <OfferTitle>{invoiceStore.totalPrice}</OfferTitle>
+
+        <input
+          keyboardType="number-pad"
+          onChange={(cash) => setCash(cash.target.value)}
+        />
+        <OfferTitle>
+          {invoiceStore.totalPrice ? cash - invoiceStore.totalPrice : 0}
+        </OfferTitle>
+      </FlexContainer>
     </ReceiptContainer>
   );
 };
