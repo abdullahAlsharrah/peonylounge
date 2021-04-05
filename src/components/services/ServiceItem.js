@@ -12,9 +12,15 @@ const ServiceItem = ({ service, handleopen }) => {
     name: service.name,
   };
   const handleAdd = () => {
-    invoiceStore.addItemToInvoice(newItem);
-    // console.log("hello");
+    const foundItem = invoiceStore.items.find(
+      (item) => item.serviceId === newItem.serviceId
+    );
+    if (foundItem) {
+      return invoiceStore.removeItemFromInvoice(`s${foundItem.serviceId}`);
+    } else return invoiceStore.addItemToInvoice(newItem);
   };
+  // console.log("hello");
+
   const handleRemove = () => {
     const foundItem = invoiceStore.items.find(
       (item) => item.serviceId === newItem.serviceId
@@ -35,7 +41,7 @@ const ServiceItem = ({ service, handleopen }) => {
 
     // onLongPress={handleRemove}
     >
-      <ServiceItemName onClick={handleAdd}>
+      <ServiceItemName foundItem={foundItem} onClick={handleAdd}>
         <p>{service.name}</p>
       </ServiceItemName>
     </div>

@@ -5,12 +5,15 @@ import { ServiceContainer } from "../../styles";
 // import MenuItem from "../Admin/Menu/MenuItem";
 import ServiceItem from "./ServiceItem";
 // import services from "./services";
-const Service = () => {
+const Service = ({ category }) => {
   // if (serviceStore.loading) return <Spinner />;
   // const list = handleopen
   //   ? serviceStore.services
-  //   : serviceStore.services.filter((service) => service.category === category);
-  const serviceList = serviceStore.services.map(
+  //   :
+  const list = serviceStore.services.filter(
+    (service) => service.category === category
+  );
+  const serviceList = list.map(
     (service) => (
       // !menu ? (
       <ServiceItem

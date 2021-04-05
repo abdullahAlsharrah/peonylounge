@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import RecieptList from "./components/invoices/RecieptList";
-import Service from "./components/services/Service";
+import Categories from "./components/services/Categories";
 import { RecieptStyle, MainConrainer, ServicesStyle } from "./styles";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <RecieptList />
       </RecieptStyle>
       <ServicesStyle>
-        <Service />
+        <Categories />
       </ServicesStyle>
     </MainConrainer>
   );

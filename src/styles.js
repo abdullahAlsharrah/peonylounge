@@ -64,6 +64,16 @@ export const FlexContainer = styled.div`
   margin-bottom: 10;
   margin-top: 20;
   align-items: center;
+  ${({ back }) =>
+    back &&
+    `
+    background-color: #c39e81;
+  `}
+  ${({ foundItem }) =>
+    foundItem &&
+    `
+    background-color: tomato;
+  `}
 
   input {
     text-align: left;
@@ -114,6 +124,11 @@ export const ServiceItemName = styled.div`
     text-align: center;
     top: 40%;
     bottom: 60%;
+    ${({ foundItem }) =>
+      foundItem &&
+      `
+    color: white;
+  `}
   }
   height: 100px;
   width: 159px;
@@ -123,6 +138,12 @@ export const ServiceItemName = styled.div`
   margin: 2px;
   // marginBottom: 50
   background-color: #c39e81;
+
+  ${({ foundItem }) =>
+    foundItem &&
+    `
+    background-color: tomato;
+  `}
 `;
 export const ServiceContainer = styled.div`
   display: flex;
@@ -131,4 +152,16 @@ export const ServiceContainer = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 10;
+`;
+export const OfferTitle = styled.p`
+  text-align: center;
+  width: 33%;
+
+  ${({ item }) =>
+    item &&
+    `
+    border: 2;
+    border-width:2;
+    border-color:green
+  `}
 `;

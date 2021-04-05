@@ -1,8 +1,7 @@
 import { observer } from "mobx-react";
-import { ListItem } from "native-base";
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import invoiceStore from "../../../stores/invoiceStore";
+import { FlexContainer, OfferTitle } from "../../../styles";
 
 const OfferItem = ({ offer }) => {
   const newItem = {
@@ -13,15 +12,21 @@ const OfferItem = ({ offer }) => {
   };
 
   const handleAdd = () => {
-    invoiceStore.addItemToInvoice(newItem);
+    const foundItem = invoiceStore.items.find(
+      (item) => item.offerId === newItem.offerId
+    );
+    if (foundItem) {
+      return invoiceStore.removeItemFromInvoice(`o${foundItem.offerId}`);
+    } else return invoiceStore.addItemToInvoice(newItem);
   };
+
   const handleRemove = () => {
     const foundItem = invoiceStore.items.find(
       (item) => item.offerId === newItem.offerId
     );
     if (foundItem) {
-      invoiceStore.removeItemFromInvoice(`o${foundItem.offerId}`);
-    } else null;
+      return invoiceStore.removeItemFromInvoice(`o${foundItem.offerId}`);
+    } else return null;
   };
 
   const foundItem = invoiceStore.items.find(
@@ -29,54 +34,22 @@ const OfferItem = ({ offer }) => {
   );
 
   return (
-    <ListItem
-      style={{
-        flexDirection: "row",
-        backgroundColor: foundItem ? "tomato" : "white",
-      }}
-      onPress={handleAdd}
-      onLongPress={handleRemove}
-    >
-      <Text style={[styles.text, { color: foundItem ? "white" : "black" }]}>
-        {offer.name}
-      </Text>
-
-      <Text style={[styles.text, { color: foundItem ? "white" : "black" }]}>
-        {offer.services.map((service) => (
-          <Text>
-            {service.name}
-            {" ,  "}
-          </Text>
-        ))}
-      </Text>
-
-      <Text style={[styles.text, { color: foundItem ? "white" : "black" }]}>
-        {offer.price} KD
-      </Text>
-    </ListItem>
+    <>
+      <FlexContainer foundItem={foundItem} onClick={handleAdd}>
+        <OfferTitle item={newItem}>{offer.name}</OfferTitle>
+        <OfferTitle item={newItem}>
+          {offer.services.map((service) => (
+            <p>
+              {service.name}
+              {" ,  "}
+            </p>
+          ))}
+        </OfferTitle>
+        <OfferTitle item={newItem}>{offer.price} KD</OfferTitle>
+      </FlexContainer>
+      ______________________________________________________________________________________________________
+    </>
   );
 };
 
 export default observer(OfferItem);
-const styles = StyleSheet.create({
-  item: {
-    height: 50,
-    width: 100,
-    borderRadius: 8,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    margin: 10,
-    marginBottom: 50,
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 0.8,
-    shadowRadius: 3.25,
-
-    elevation: 5,
-  },
-  text: { textAlign: "center", width: "33%" },
-});
