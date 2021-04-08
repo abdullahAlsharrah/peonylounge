@@ -40,9 +40,7 @@ const RecieptList = () => {
     .map((item) => (
       <RecieptItem
         item={item}
-        key={
-          item.serviceId || item.productId || item.apackageId || item.offerId
-        }
+        key={item.name}
         // route={route ? route : null}
       />
     ));
@@ -54,7 +52,6 @@ const RecieptList = () => {
         <p>Phone Number:</p>
 
         <input
-          keyboardType="number-pad"
           maxLength={8}
           onChange={(phoneNumber) => setPhoneNumber(phoneNumber.target.value)}
         />
@@ -92,10 +89,7 @@ const RecieptList = () => {
       <FlexContainer>
         <OfferTitle>{invoiceStore.totalPrice}</OfferTitle>
 
-        <input
-          keyboardType="number-pad"
-          onChange={(cash) => setCash(cash.target.value)}
-        />
+        <input onChange={(cash) => setCash(cash.target.value)} />
         <OfferTitle>
           {invoiceStore.totalPrice ? cash - invoiceStore.totalPrice : 0}
         </OfferTitle>

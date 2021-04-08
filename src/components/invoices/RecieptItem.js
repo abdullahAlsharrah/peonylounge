@@ -1,5 +1,6 @@
 import { observer } from "mobx-react";
 import React from "react";
+// import invoiceStore from "../../stores/invoiceStore";
 import offerStore from "../../stores/offerStore";
 import {
   RecieptItemContainer,
@@ -7,24 +8,27 @@ import {
   RecieptItemPrice,
 } from "../../styles";
 
-const RecieptItem = ({ item, route }) => {
+const RecieptItem = ({ item }) => {
   const offer = item.OrderOfferItem
     ? offerStore.offers.find(
         (offer) => offer.id === item.OrderOfferItem.offerId
       )
     : null;
+
   return (
-    <>
+    <div>
       <RecieptItemContainer>
         <RecieptItemName>
           {item.quantity}x {item.name}
+          <br />
+          {item.arabic}
         </RecieptItemName>
         <RecieptItemPrice>{item.price} KD</RecieptItemPrice>
       </RecieptItemContainer>
       {item.OrderOfferItem
         ? offer.services.map((service) => <p>- {service.name}</p>)
         : null}
-    </>
+    </div>
   );
 };
 

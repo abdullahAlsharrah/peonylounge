@@ -120,21 +120,20 @@ export const ServiceItemName = styled.div`
   p {
     font-size: 20;
     font-weight: 600;
-    position: relative;
+    /* position: relative; */
     text-align: center;
-    top: 40%;
-    bottom: 60%;
     ${({ foundItem }) =>
       foundItem &&
       `
     color: white;
-  `}
+  `};
   }
-  height: 100px;
+  height: 150px;
   width: 159px;
-  justify-content: center;
+  display: flex;
   align-content: center;
   align-items: center;
+  justify-content: center;
   margin: 2px;
   // marginBottom: 50
   background-color: #c39e81;
@@ -164,4 +163,22 @@ export const OfferTitle = styled.p`
     border-width:2;
     border-color:green
   `}
+`;
+export const InvoiceStyleContent = styled.div`
+  margin-left: -10;
+`;
+export const InvoiceStyleView = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10;
+  p {
+    text-align: center;
+    width: 25%;
+  }
+`;
+
+export const InvoiceTotal = styled.p`
+  text-align: center;
+  font-size: 20;
 `;

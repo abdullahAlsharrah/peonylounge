@@ -1,44 +1,36 @@
 import { observer } from "mobx-react";
-import { Body, Left, ListItem, Right, View } from "native-base";
 import React from "react";
-import { StyleSheet, Text } from "react-native";
-import invoiceStore from "../../stores/invoiceStore";
+// import invoiceStore from "../../stores/invoiceStore";
+import { InvoiceStyleView } from "../../styles";
 
 const InvoiceItem = ({ invoice, navigation }) => {
-  if (invoiceStore.loading) return <Spinner />;
+  // const totalInvoicePrice = () => {
+  //   let total = 0;
+  //   invoice.services.forEach((service) => {
+  //     total += service.price;
+  //   });
+  //   invoice.products.forEach((product) => {
+  //     total += product.price;
+  //   });
 
-  const totalInvoicePrice = () => {
-    let total = 0;
-    invoice.services.forEach((service) => {
-      total += service.price;
-    });
-    invoice.products.forEach((product) => {
-      total += product.price;
-    });
-
-    return total;
-  };
+  //   return total;
+  // };
   return (
-    <ListItem
-      style={{ flexDirection: "row" }}
-      onPress={() => navigation.navigate("Reciept", { invoice: invoice })}
+    <InvoiceStyleView
+
+    // onClick={() => navigation.navigate("Reciept", { invoice: invoice })}
     >
-      <Text style={styles.text}>{invoice.id}</Text>
+      <p>{invoice.id}</p>
 
-      <Text style={styles.text}>
-        {invoice.phoneNumber ? invoice.phoneNumber : "no number"}
-      </Text>
+      <p>{invoice.phoneNumber ? invoice.phoneNumber : "no number"}</p>
 
-      <Text style={styles.text}>
+      <p>
         {invoice.services.length} : {invoice.products.length}
-      </Text>
+      </p>
 
-      <Text style={styles.text}>{invoice.price} KD</Text>
-    </ListItem>
+      <p>{invoice.price} KD</p>
+    </InvoiceStyleView>
   );
 };
 
 export default observer(InvoiceItem);
-const styles = StyleSheet.create({
-  text: { textAlign: "center", width: "25%" },
-});

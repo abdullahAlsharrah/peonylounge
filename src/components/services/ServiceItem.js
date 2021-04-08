@@ -5,31 +5,41 @@ import { ServiceItemName } from "../../styles";
 
 const ServiceItem = ({ service, handleopen }) => {
   const newItem = {
+    quantity: 1,
     serviceId: service.id,
     price: service.price,
     name: service.name,
+    arabic: service.arabic,
   };
   const handleAdd = () => {
+    invoiceStore.addItemToInvoice(newItem);
+  };
+  const handleRemove = () => {
     const foundItem = invoiceStore.items.find(
       (item) => item.serviceId === newItem.serviceId
     );
     if (foundItem) {
       return invoiceStore.removeItemFromInvoice(`s${foundItem.serviceId}`);
-    } else return invoiceStore.addItemToInvoice(newItem);
+    } else return null;
   };
-  // console.log("hello");
-
   const foundItem = invoiceStore.items.find(
     (item) => item.serviceId === service.id
   );
+  // console.log("hello");
 
   return (
     <div
 
     // onLongPress={handleRemove}
     >
-      <ServiceItemName foundItem={foundItem} onClick={handleAdd}>
-        <p>{service.name}</p>
+      <ServiceItemName
+        foundItem={foundItem}
+        onClick={handleAdd}
+        onDoubleClick={handleRemove}
+      >
+        <p>
+          {service.name} <br /> {service.arabic}
+        </p>
       </ServiceItemName>
     </div>
   );
