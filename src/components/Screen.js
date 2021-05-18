@@ -11,6 +11,7 @@ import Categories from "./services/Categories";
 
 import { MainConrainer, RecieptStyle, ServicesStyle } from "../styles";
 import Invoices from "./invoices/Invoices";
+import PickerTime from "../components/picker/PickerTime";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,6 +76,7 @@ export default function ScrollableTabsButtonAuto() {
         >
           <Tab label="الصفحه الرئيسيه" {...a11yProps(0)} />
           <Tab label="الفواتير" {...a11yProps(1)} />
+          <Tab label="المواعيد" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -90,6 +92,9 @@ export default function ScrollableTabsButtonAuto() {
       </TabPanel>
       <TabPanel value={value} index={1}>
         <Invoices />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <PickerTime />{" "}
       </TabPanel>
     </div>
   );

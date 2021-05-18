@@ -4,6 +4,7 @@ import "./App.css";
 // import { RecieptStyle, MainConrainer, ServicesStyle } from "./styles";
 import React from "react";
 import Screen from "./components/Screen";
+// import PickerTimeItem from "./components/picker/PickerTimeItem";
 
 function App() {
   return <Screen />;

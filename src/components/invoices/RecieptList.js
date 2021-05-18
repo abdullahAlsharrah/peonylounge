@@ -12,7 +12,16 @@ import {
 } from "../../styles";
 const RecieptList = () => {
   const [cash, setCash] = React.useState();
+  // const printContent = (el) => {
+  //   let res = document.body.outerHTML;
+  //   let printcontent = document.getElementById(el).innerHTML;
+  //   document.body.innerHTML = printcontent;
+  //   window.print();
+  //   document.body.innerHTML = res;
+  //   window.location.reload();
+  // };
   const handleCheckout = () => {
+    // printContent("List");
     invoiceStore.setPhoneNumber(phoneNumber);
     invoiceStore.checkout();
     setPhoneNumber();
